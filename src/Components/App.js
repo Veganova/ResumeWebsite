@@ -1,22 +1,35 @@
 import React, { Component } from 'react';
 import RightArrow from "./RightArrow";
-import {Motion, spring} from "react-motion";
+import Grid from '@material-ui/core/Grid';
+import '../styles/resume.css';
+import Resume from './Resume';
+import ContainerDimensions from 'react-container-dimensions'
 
 class App extends Component {
+
   render() {
+    const MD_WIDTH = 10;
+    const LG_WIDTH = 8;
+    return (
+    <Grid container spacing={0} className="fullHeight">
+      <Grid container xs={0} md={(12 - MD_WIDTH) / 2.0} lg={(12 - LG_WIDTH) / 2.0} spacing={0}>
+      </Grid>
+      <Grid item xs={12} md={MD_WIDTH} lg={LG_WIDTH} spacing={0} className='resume-container '>
+        <ContainerDimensions>
+          { ({ height, width }) => <Resume height={height} width={width}/> }
+        </ContainerDimensions>
+      </Grid>
+      <Grid container xs={0} md={(12 - MD_WIDTH) / 2.0} lg={(12 - LG_WIDTH) / 2.0} spacing={0}>
+      </Grid>
+    </Grid>
+    );
+  }
+
+
+  render2() {
     return (
       <div>
-        <Motion
-            defaultStyle={{ scale: -1.0 }}
-            style={{ scale: spring(1, { stiffness: 60, damping: 10 }) }}
-        >
-          {interpolatedStyles => {
-            return (
-            <div>
-              <RightArrow scale={interpolatedStyles.scale}/>
-            </div>);
-          } }
-        </Motion>
+
       </div>
     );
   }
