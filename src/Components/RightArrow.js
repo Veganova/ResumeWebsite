@@ -4,40 +4,12 @@ import {Motion, spring} from "react-motion";
 import {Stage, Layer, Shape, Text} from 'react-konva';
 
 class RightArrow extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      width: 0,
-      height: 0
-    };
-  }
-
-  updateDimensions = () => {
-    let w = window,
-      d = document,
-      documentElement = d.documentElement,
-      body = d.getElementsByTagName('body')[0],
-      width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
-      height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
-
-    this.setState({width, height});
-  };
-
-  componentWillMount() {
-    this.updateDimensions();
-  }
-
-  componentDidMount() {
-    window.addEventListener("resize", this.updateDimensions);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions);
-  }
+ // todo https://stackoverflow.com/questions/19349293/display-text-over-svg
 
   rightArrow(scale) {
-    const height = this.props.height * 0.052;
+    console.log("redrawinga");
     const width = this.props.width * 0.13;
+    const height = width * 0.4;
     const maxWidth = width * 1.2;
     console.log("height", window.height, window.length);
     // todo give parent width so that the react grid element can be used for sizing.
@@ -78,7 +50,6 @@ class RightArrow extends Component {
             scaleY={1}
             text="Projects"
             fontFamily='Roboto'
-            wrap="char"
             align="center"
             verticalAlign="middle"
             width={width}

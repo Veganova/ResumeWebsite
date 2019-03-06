@@ -9,18 +9,16 @@ class Resume extends Component {
         <Grid item xs={12}>
           <div>Viraj Patil | Other stuff</div>
         </Grid>
+
         <Grid item xs={3}>
           <RightArrow height={this.props.height} width={this.props.width}/>
         </Grid>
-        <Grid item xs={9}>
-          <p>md=12</p>
-        </Grid>
+        <Grid item xs={9}/>
+
         <Grid item xs={3}>
           <RightArrow height={this.props.height} width={this.props.width}/>
         </Grid>
-        <Grid item xs={9}>
-          <p>md=12</p>
-        </Grid>
+        <Grid item xs={9} style={{'background-color':'blue'}}/>
       </Grid>
     )
   }
