@@ -1,25 +1,37 @@
 import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 import RightArrow from "./RightArrow";
+import styled from 'styled-components';
+
+const Name = styled.p`
+  font-size: ${props => props.size}pt;
+  font-weight: bold;
+  display: inline;
+`;
+
+const MyGrid = styled(Grid)`
+  padding-bottom: 5px;
+`;
+
 
 class Resume extends Component {
   render() {
     return (
-      <Grid container>
-        <Grid item xs={12}>
-          <div>Viraj Patil | Other stuff</div>
-        </Grid>
+      <MyGrid container>
+        <MyGrid item xs={12}>
+          <div><Name size={18}> Viraj Patil </Name> | Other stuff</div>
+        </MyGrid>
 
-        <Grid item xs={3}>
-          <RightArrow height={this.props.height} width={this.props.width}/>
-        </Grid>
-        <Grid item xs={9}/>
+        <MyGrid item xs={3}>
+          <RightArrow text={"Projects"} height={this.props.height} width={this.props.width}/>
+        </MyGrid>
+        <MyGrid item xs={9}/>
 
-        <Grid item xs={3}>
-          <RightArrow height={this.props.height} width={this.props.width}/>
-        </Grid>
-        <Grid item xs={9} style={{'background-color':'blue'}}/>
-      </Grid>
+        <MyGrid item xs={3}>
+          <RightArrow text={"Technical Skills"} height={this.props.height} width={this.props.width}/>
+        </MyGrid>
+        <MyGrid item xs={9} style={{'background-color':'blue'}}/>
+      </MyGrid>
     )
   }
 }
