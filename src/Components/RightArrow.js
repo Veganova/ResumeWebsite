@@ -3,49 +3,58 @@ import {render} from 'react-dom';
 import {Motion, spring} from "react-motion";
 import {Stage, Layer, Shape, Text} from 'react-konva';
 import styled from 'styled-components';
+import styles from '../styles/styles';
 
 const RelDiv = styled.div`
   position: relative;
-  height: ${props => props.height}px;
-  width: ${props => props.width}px;
+  // height: ${props => props.height}px;
+  // width: ${props => props.width}px;
   overflow: hidden;
+  path {
+    fill: ${styles.arrowRight};
+  }
 `;
 
 const ArrowText = styled.div`
-  height: ${props => props.height}px;
-  width: ${props => props.width}px;
+  // height: ${props => props.height}px;
+  // width: ${props => props.width}px;
   position: absolute;
   top: 0;
   left: 0;
-  margin-left: ${props => (props.scale - 1) * props.width}px;
+  
   text-align: center;
   vertical-align: middle;
   line-height: ${props => props.height}px;
   
   p {
-    color: blue;
-    display: inline;
-    //font-size: 2vh;
-    font-size: ${props => 2.9 + 0.12  * props.width  / ( props.textLength / 8)}pt;
+    color: ${styles.textLeft};
+    display: inline;    
+    font-size: ${props => -1 + 0.08 * props.width}pt;
+    font-weight: 100;
   }
 `;
 
 class RightArrow extends Component {
 
   rightArrow2(scale) {
-    const W = this.props.width * 0.13;
-    const H = W * 0.4;
+    let baseW = this.props.width * 0.20;
+    let h = baseW * 0.2;
+    let P = this.props.width * styles.leftPadding;
+    let W = baseW + P;
 
-    let h = H;
+    // W += P;
     let w = W * scale;
-    const w2 = w * 1.2;
+    let w2 = w * 1.1;
+
+
 
     return (
-    <RelDiv height={h} width={w2}>
+    <RelDiv>
       <svg height={h} width={w2}>
         <path d={`M0 0 L ${w} 0 L${w2} ${h / 2} L${w} ${h} L0 ${h} Z`}/>
       </svg>
-      <ArrowText scale={scale} textLength={this.props.text.length} height={H} width={W}>
+      <ArrowText scale={scale} textLength={this.props.text.length} height={h} width={W}
+                 style={{'marginLeft': P + (scale - 1) * W + "px"}}>
         <p>{this.props.text}</p>
       </ArrowText>
     </RelDiv>
@@ -57,7 +66,7 @@ class RightArrow extends Component {
 
       <Motion
         defaultStyle={{scale: 0.0}}
-        style={{scale: spring(1, {stiffness: 70, damping: 12})}}
+        style={{scale: spring(1, {stiffness: 45, damping: 6})}}
       >
         {interpolatedStyles => {
           return (

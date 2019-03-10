@@ -1,0 +1,10 @@
+{
+  "background": "#ffffff",
+  "textLeft": "#E4E3E2",
+  "arrowRight": "#404040",
+  "arrowLeft": "#CECCCA",
+  "textRight": "#1C1C1C",
+  "textColor": "#454545",
+
+  "leftPadding": 0.05
+}
