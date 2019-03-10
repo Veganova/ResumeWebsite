@@ -26,7 +26,7 @@ const ArrowText = styled.div`
     color: blue;
     display: inline;
     //font-size: 2vh;
-    font-size: ${props => 4 + 0.08  * props.width  / ( props.textLength / 7)}pt;
+    font-size: ${props => 2.9 + 0.12  * props.width  / ( props.textLength / 8)}pt;
   }
 `;
 
