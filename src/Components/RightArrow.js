@@ -7,8 +7,6 @@ import styles from '../styles/styles';
 
 const RelDiv = styled.div`
   position: relative;
-  // height: ${props => props.height}px;
-  // width: ${props => props.width}px;
   overflow: hidden;
   path {
     fill: ${styles.arrowRight};
@@ -16,8 +14,6 @@ const RelDiv = styled.div`
 `;
 
 const ArrowText = styled.div`
-  // height: ${props => props.height}px;
-  // width: ${props => props.width}px;
   position: absolute;
   top: 0;
   left: 0;
@@ -36,7 +32,7 @@ const ArrowText = styled.div`
 
 class RightArrow extends Component {
 
-  rightArrow2(scale) {
+  rightArrow(scale) {
     let baseW = this.props.width * 0.20;
     let h = baseW * 0.2;
     let P = this.props.width * styles.leftPadding;
@@ -45,8 +41,6 @@ class RightArrow extends Component {
     // W += P;
     let w = W * scale;
     let w2 = w * 1.1;
-
-
 
     return (
     <RelDiv>
@@ -71,7 +65,7 @@ class RightArrow extends Component {
         {interpolatedStyles => {
           return (
             <div>
-              {this.rightArrow2(interpolatedStyles.scale)}
+              {this.rightArrow(interpolatedStyles.scale)}
             </div>);
         }}
       </Motion>

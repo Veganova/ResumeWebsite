@@ -6,5 +6,9 @@
   "textRight": "#1C1C1C",
   "textColor": "#454545",
 
-  "leftPadding": 0.05
+  "contentDateSpacing": 0.03,
+  "contentHeight": 15,
+  "leftPadding": 0.05,
+  "rightPadding": 0.10,
+  "rightArrowPadding": 0.0
 }

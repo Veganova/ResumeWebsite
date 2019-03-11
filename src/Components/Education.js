@@ -2,16 +2,44 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import {StaggeredMotion, spring} from "react-motion";
 import styles from '../styles/styles'
+import LeftArrow from "./LeftArrow";
 //
 const Dangle = styled.div`
-  perspective: 50em;
   color: ${styles.textColor};
-  padding-left: ${100*styles.leftPadding}%
+  padding-left: ${100*styles.leftPadding}%;
   h4, p {
     padding: 0;
     display: inline;
   }
-  //text-shadow:
+`
+
+const Content = styled.div`
+  
+  
+  .textWrapper {
+    display: inline-block;
+    perspective: 50em;
+    width: ${(1 - styles.rightPadding - styles.contentDateSpacing) * 100}%;
+  }
+  .textContent {
+    display: inline-block;
+  }
+  
+  .spacing {
+    display: inline-block;
+     width: ${styles.contentDateSpacing * 100}%;
+  }
+  .date {
+    display: inline-block;
+    width: ${styles.rightPadding * 100}%;
+    float: right;
+    position: relative;
+    .alignDate {
+      right: 0;
+      position: absolute;
+      top:0;
+    }
+  }
 `
 
 
@@ -30,7 +58,9 @@ const finalDamping = initialDamping;//20;
 
 class Education extends Component {
 
-  render() {
+  constructor(props) {
+    super(props);
+
     const resumeContent = [
       [<h4>Northeastern University, Boston, MA</h4>, "2016 – present"],
       [<p>College of Computer and Information Science</p>, "Exp. 2020"],
@@ -38,10 +68,21 @@ class Education extends Component {
     ];
 
 
+
+    this.state = {
+      resumeContent: resumeContent
+    }
+
+  }
+
+  render() {
+
+
+
     return (
       <StaggeredMotion
         defaultStyles={
-          resumeContent.map((c) => { return { y: startY, o: startOpacity }})
+          this.state.resumeContent.map((c) => { return { y: startY, o: startOpacity }})
         }
         styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {
           return i === 0
@@ -62,14 +103,25 @@ class Education extends Component {
                   "transform": `rotateX(${90 - style.y * 90}deg)`,
                   // "textShadow": `-2px -1px 3px #a2a2a2`,// ${props => -3 +  props.scale * 1.5}px 1px 1px #74786b;
                   "opacity": style.o,
-                  "lineHeight": (style.y > 1 ? 100 : 100 * style.y) + "%"//0.5 * style.y + 0.5 + "em"
+                  "lineHeight": styles.contentHeight * style.y + "px"//0.5 * style.y + 0.5 + "em"
               };
-
-
               return (
-                  <div key={i} style={childStyles}>
-                    {resumeContent[i][0]}
+                <Content scale={style.y} key={i} >
+                  <div className="textWrapper" >
+                    <div className="textContent" style={childStyles}>{this.state.resumeContent[i][0]}</div>
                   </div>
+                  <div className="spacing"/>
+                  {(this.state.resumeContent[i][1]) ?
+                    <div className="date">
+                      <div className="alignDate">
+                      <LeftArrow scale={style.y}
+                                 trigger={1}
+                                 height={this.props.height}
+                                 width={this.props.width}
+                                 text={this.state.resumeContent[i][1]}/>
+                      </div>
+                    </div> : null}
+                </Content>
               )
             })}
           </Dangle>
