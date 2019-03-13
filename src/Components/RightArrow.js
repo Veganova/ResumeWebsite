@@ -34,7 +34,7 @@ const ArrowText = styled.div`
 class RightArrow extends Component {
 
   rightArrow(scale) {
-    let baseW = this.props.width * 0.15;
+    let baseW = this.props.width * 0.165;
     let h = baseW * 0.2;
     let P = this.props.width * styles.leftPadding;
     let W = baseW + P;

@@ -6,10 +6,18 @@ import LeftArrow from "./LeftArrow";
 //
 const Dangle = styled.div`
   color: ${styles.textColor};
-  padding-left: ${100*styles.leftPadding}%;
+  padding-left: ${100 * styles.leftPadding}%;
   h3, h4, p {
     padding: 0;
     display: inline;
+  }
+  
+  ul {
+    //display: inline;
+    padding: 0;
+    margin:0;
+    margin-left: 5%;
+    padding-bottom: ${styles.contentSpacing / 2}px;
   }
 `
 
@@ -48,13 +56,13 @@ const startOpacity = 0.0;
 
 // Lower damping and stiffness here will exaggerate the
 // Start of the sequence of animations
-const initialStiffness = 400;// 10
-const initialDamping = 40;//3.6
+const initialStiffness = 10;// 10
+const initialDamping = 3.7;//3.6
 
 // Lower damping and stiffness here will exaggerate the
 // End of the sequence of animations
-const finalStiffness = 400;//400;
-const finalDamping = initialDamping;//20;
+const finalStiffness = 14 ;//400;
+const finalDamping = 3.7;//20;
 
 class ContentListing extends Component {
 
@@ -91,12 +99,16 @@ class ContentListing extends Component {
           <Dangle>
             {interpolatingStyles.map((style, i) => {
               const childStyles = {
-                  "transformOrigin": "100% 0",
-                  "transform": `rotateX(${90 - style.y * 90}deg)`,
-                  // "textShadow": `-2px -1px 3px #a2a2a2`,// ${props => -3 +  props.scale * 1.5}px 1px 1px #74786b;
-                  "opacity": style.o,
-                  "lineHeight": styles.contentHeight * style.y + "px"//0.5 * style.y + 0.5 + "em"
+                height: 100 * style.y + '%',
+                opacity: style.o
               };
+              // const childStyles = {
+              //     "transformOrigin": "100% 0",
+              //     "transform": `rotateX(${90 - style.y * 90}deg)`,
+              //     // "textShadow": `-2px -1px 3px #a2a2a2`,// ${props => -3 +  props.scale * 1.5}px 1px 1px #74786b;
+              //     "opacity": style.o,
+              //     "lineHeight": styles.contentHeight * style.y + "px"//0.5 * style.y + 0.5 + "em"
+              // };
               return (
                 <Content scale={style.y} key={i} style={childStyles} >
                   <div className="textWrapper" >

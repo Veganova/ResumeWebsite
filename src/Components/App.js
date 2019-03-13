@@ -9,7 +9,7 @@ class App extends Component {
 
   render() {
     const MD_WIDTH = 10;
-    const LG_WIDTH = 8;
+    const LG_WIDTH = 6;
     return (
     <Grid container spacing={0} className="fullHeight">
       <Grid item md={(12 - MD_WIDTH) / 2.0} lg={(12 - LG_WIDTH) / 2.0}/>

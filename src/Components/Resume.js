@@ -116,6 +116,45 @@ class Resume extends Component {
           ]}/>
         </MyGrid>
 
+        <MyGrid item xs={6}>
+          <RightArrow text={"Experience"} height={this.props.height} width={this.props.width}/>
+        </MyGrid>
+        <MyGrid item xs={6}/>
+        <MyGrid item xs={12}>
+          <ContentListing height={this.props.height} width={this.props.width} resumeContent={[
+            [<h4>SmarterTravel - A TripAdvisor company, Boston, MA | Software Developer Co-op</h4>, "Jan. ‘18 – June ‘18"],
+            [<ul><li>Implemented new functionality and fixed bugs across the full-stack for SmarterTravel's
+              Search Engine Marketing (SEM) development team</li></ul>, null],
+            [<ul><li>Completed the first ever suite of Selenium integration tests for ST’s SEM web application</li></ul>, null],
+            [<ul><li>Used a variety of technologies such as Spring, Struts, Vue, SQL, and the Java servlet stack</li></ul>, null],
+            [<h4>Ovitas, Burlington, MA | Quality Assurance Intern</h4>, "July ‘15 – Aug. ‘15"],
+            [<ul><li>Tested the ScienceOpen website and worked in a software development lifecycle</li></ul>, null],
+            [<ul><li>Detected and logged (60+) significant defects during my 2 month internship</li></ul>, null]
+          ]}/>
+        </MyGrid>
+
+        <MyGrid item xs={6}>
+          <RightArrow text={"Projects"} height={this.props.height} width={this.props.width}/>
+        </MyGrid>
+        <MyGrid item xs={6}/>
+        <MyGrid item xs={12}>
+          <ContentListing height={this.props.height} width={this.props.width} resumeContent={[
+            [<div><h4>Note-taking Web Application</h4><a href={"www.recollect.info"}>(www.recollect.info)</a></div>, "June ‘18"],
+            [<ul><li>Developed a notes application with calculated design decisions granting easy scalability</li></ul>, null],
+            [<ul><li>Managed application level state with Redux and rendered front-end visuals with React</li></ul>, null],
+            [<ul><li>Handled back-end requests with Express and accessed a mLab database with Mongoose</li></ul>, null],
+            [<div><h4>Android Development</h4><a href={"www.github.com/veganova/Entity"}>(github.com/veganova/Entity)</a></div>, "July ‘17"],
+            [<ul><li>Created an Android game with realistic physics, interesting mechanics and a unique UI</li></ul>, null],
+            [<ul><li>Learned how to use the Android SDK, design patterns, custom data structures, and Git</li></ul>, null],
+            [<h4>Music Desktop Application</h4>, "June ‘17"],
+            [<ul><li>Created an application using Java and MIDI using object oriented design concepts</li></ul>, null],
+            [<ul><li>Designed features including: importing songs, play through, adding notes, and more</li></ul>, null],
+            [<h4>Competitions & Events</h4>, "2015 - 2017"],
+            [<ul><li>Hackathons: Worked on projects in teams at HuskyHack3, LexHack and HackWitUs</li></ul>, null],
+            [<ul><li>MIT Battlecode: Programmed an AI in Java to fight against other AIs in a competition</li></ul>, null],
+          ]}/>
+        </MyGrid>
+
       </MyGrid>
     )
   }
