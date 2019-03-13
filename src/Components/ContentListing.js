@@ -7,7 +7,7 @@ import LeftArrow from "./LeftArrow";
 const Dangle = styled.div`
   color: ${styles.textColor};
   padding-left: ${100*styles.leftPadding}%;
-  h4, p {
+  h3, h4, p {
     padding: 0;
     display: inline;
   }
@@ -15,14 +15,11 @@ const Dangle = styled.div`
 
 const Content = styled.div`
   
+  padding-bottom: ${styles.contentSpacing}px;
   
   .textWrapper {
     display: inline-block;
-    perspective: 50em;
     width: ${(1 - styles.rightPadding - styles.contentDateSpacing) * 100}%;
-  }
-  .textContent {
-    display: inline-block;
   }
   
   .spacing {
@@ -30,6 +27,7 @@ const Content = styled.div`
      width: ${styles.contentDateSpacing * 100}%;
   }
   .date {
+    transform: rotateX(0deg);
     display: inline-block;
     width: ${styles.rightPadding * 100}%;
     float: right;
@@ -43,34 +41,28 @@ const Content = styled.div`
 `
 
 
+
+
 const startY = -0.1;
 const startOpacity = 0.0;
 
 // Lower damping and stiffness here will exaggerate the
 // Start of the sequence of animations
-const initialStiffness = 10;
-const initialDamping = 3.6;
+const initialStiffness = 400;// 10
+const initialDamping = 40;//3.6
 
 // Lower damping and stiffness here will exaggerate the
 // End of the sequence of animations
-const finalStiffness = 16;//400;
+const finalStiffness = 400;//400;
 const finalDamping = initialDamping;//20;
 
-class Education extends Component {
+class ContentListing extends Component {
 
   constructor(props) {
     super(props);
 
-    const resumeContent = [
-      [<h4>Northeastern University, Boston, MA</h4>, "2016 – present"],
-      [<p>College of Computer and Information Science</p>, "Exp. 2020"],
-      [<i> Candidate for a Bachelor of Science in Computer Science (minor in Mathematics) </i>, null]
-    ];
-
-
-
     this.state = {
-      resumeContent: resumeContent
+      resumeContent: this.props.resumeContent
     }
 
   }
@@ -106,9 +98,9 @@ class Education extends Component {
                   "lineHeight": styles.contentHeight * style.y + "px"//0.5 * style.y + 0.5 + "em"
               };
               return (
-                <Content scale={style.y} key={i} >
+                <Content scale={style.y} key={i} style={childStyles} >
                   <div className="textWrapper" >
-                    <div className="textContent" style={childStyles}>{this.state.resumeContent[i][0]}</div>
+                    <div className="textContent" >{this.state.resumeContent[i][0]}</div>
                   </div>
                   <div className="spacing"/>
                   {(this.state.resumeContent[i][1]) ?
@@ -139,4 +131,4 @@ class Education extends Component {
   }
 }
 
-export default Education;
+export default ContentListing;

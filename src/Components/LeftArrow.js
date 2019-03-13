@@ -24,8 +24,8 @@ const ArrowText = styled.div`
   line-height: ${styles.contentHeight}px;;
   padding-left : 12.5%;
   color: ${styles.textRight};
-  font-size: ${props => 1.7 + 0.07 * props.width}pt;
-  font-weight: 100;
+  font-size: ${props => 0.3 + 0.07 * props.width}pt;
+  font-weight: 600;
 `;
 
 class LeftArrow extends Component {

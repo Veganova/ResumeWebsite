@@ -8,7 +8,9 @@
 
   "contentDateSpacing": 0.03,
   "contentHeight": 15,
+  "contentSpacing": 5 ,
   "leftPadding": 0.05,
   "rightPadding": 0.10,
-  "rightArrowPadding": 0.0
+  "rightArrowPadding": 0.0,
+  "sectionSpacing": 20
 }

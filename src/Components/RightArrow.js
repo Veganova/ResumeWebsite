@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import styles from '../styles/styles';
 
 const RelDiv = styled.div`
+  margin-top: ${styles.sectionSpacing}px;
   position: relative;
   overflow: hidden;
   path {
@@ -33,7 +34,7 @@ const ArrowText = styled.div`
 class RightArrow extends Component {
 
   rightArrow(scale) {
-    let baseW = this.props.width * 0.20;
+    let baseW = this.props.width * 0.15;
     let h = baseW * 0.2;
     let P = this.props.width * styles.leftPadding;
     let W = baseW + P;
