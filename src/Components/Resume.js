@@ -4,7 +4,7 @@ import RightArrow from "./RightArrow";
 import styled from 'styled-components';
 import ContentListing from "./ContentListing";
 import styles from '../styles/styles';
-import {Motion, spring} from "react-motion";
+import {Motion, spring, StaggeredMotion} from "react-motion";
 
 const Name = styled.p`
   font-size: ${props => props.size}pt;
@@ -50,24 +50,27 @@ const InnerNested = styled.div`
 
 class Resume extends Component {
   render() {
-    return (
-      <Motion
-        defaultStyle={{scale: 0.0}}
-        style={{scale: spring(1, {stiffness: 45, damping: 6})}}
-      >
-        {interpolatedStyles => {
-          return (
-          <MyGrid style={{"backgroundColor": styles.background}} container>
-            <MyGrid item xs={12}>
-              <div><Name size={18}> Viraj Patil </Name> | Other stuff</div>
-            </MyGrid>
+    let getAllContent = (styles) => {
+      if (!styles) {
+        styles = {
+          y: 0
+        }
+      }
+
+      return (
+        [
+          <MyGrid item xs={12}>
+            <div><Name size={18}> Viraj Patil </Name> | Other stuff</div>
+          </MyGrid>,
+
+          <React.Fragment>
             <MyGrid item xs={6}>
               <div>
-                <RightArrow scale={interpolatedStyles.scale}  text={"Education"} height={this.props.height} width={this.props.width}/>
+                <RightArrow scale={styles.y} text={"Education"} height={this.props.height} width={this.props.width}/>
               </div>
             </MyGrid><MyGrid item xs={6}/>
             <MyGrid item xs={12}>
-              <ContentListing  scale={interpolatedStyles.scale}  height={this.props.height} width={this.props.width} resumeContent={[
+              <ContentListing scale={styles.y} height={this.props.height} width={this.props.width} resumeContent={[
                 [<h4>Northeastern University, Boston, MA</h4>, "2016 – present"],
                 [<p>College of Computer and Information Science</p>, "Exp. 2020"],
                 [<i> Candidate for a Bachelor of Science in Computer Science (minor in Mathematics) </i>, null],
@@ -92,13 +95,15 @@ class Resume extends Component {
                 </Nested>]
               ]}/>
             </MyGrid>
+          </React.Fragment>,
 
+          <React.Fragment>
             <MyGrid item xs={6}>
-              <RightArrow scale={interpolatedStyles.scale}  text={"Technical Skills"} height={this.props.height} width={this.props.width}/>
+              <RightArrow scale={styles.y} text={"Technical Skills"} height={this.props.height} width={this.props.width}/>
             </MyGrid>
             <MyGrid item xs={6}/>
             <MyGrid item xs={12}>
-              <ContentListing  scale={interpolatedStyles.scale}  height={this.props.height} width={this.props.width} resumeContent={[
+              <ContentListing scale={styles.y} height={this.props.height} width={this.props.width} resumeContent={[
                 [<Nested>
                   <div className="key">Languages & Frameworks</div>
                   <div className="value">
@@ -130,13 +135,15 @@ class Resume extends Component {
                 </Nested>]
               ]}/>
             </MyGrid>
+          </React.Fragment>,
 
+          <React.Fragment>
             <MyGrid item xs={6}>
-              <RightArrow scale={interpolatedStyles.scale}  text={"Experience"} height={this.props.height} width={this.props.width}/>
+              <RightArrow scale={styles.y} text={"Experience"} height={this.props.height} width={this.props.width}/>
             </MyGrid>
             <MyGrid item xs={6}/>
             <MyGrid item xs={12}>
-              <ContentListing  scale={interpolatedStyles.scale}  height={this.props.height} width={this.props.width} resumeContent={[
+              <ContentListing scale={styles.y} height={this.props.height} width={this.props.width} resumeContent={[
                 [<h4>SmarterTravel - A TripAdvisor company, Boston, MA | Software Developer Co-op</h4>, "Jan. ‘18 – June ‘18"],
                 [<ul>
                   <li>Implemented new functionality and fixed bugs across the full-stack for SmarterTravel's
@@ -158,13 +165,15 @@ class Resume extends Component {
                 </ul>, null]
               ]}/>
             </MyGrid>
+          </React.Fragment>,
 
+          <React.Fragment>
             <MyGrid item xs={6}>
-              <RightArrow scale={interpolatedStyles.scale}  text={"Projects"} height={this.props.height} width={this.props.width}/>
+              <RightArrow scale={styles.y} text={"Projects"} height={this.props.height} width={this.props.width}/>
             </MyGrid>
             <MyGrid item xs={6}/>
             <MyGrid item xs={12}>
-              <ContentListing  scale={interpolatedStyles.scale}  height={this.props.height} width={this.props.width} resumeContent={[
+              <ContentListing scale={styles.y} height={this.props.height} width={this.props.width} resumeContent={[
                 [<div><h4>Note-taking Web Application</h4><a href={"www.recollect.info"}>(www.recollect.info)</a></div>, "June ‘18"],
                 [<ul>
                   <li>Developed a notes application with calculated design decisions granting easy scalability</li>
@@ -198,10 +207,41 @@ class Resume extends Component {
                 </ul>, null],
               ]}/>
             </MyGrid>
+          </React.Fragment>
+        ]
+      )
+    }
 
-          </MyGrid>)
+    let content = (styles, i) => {
+      return getAllContent(styles)[i]
+    };
+
+    return (
+      <StaggeredMotion
+        defaultStyles={
+          getAllContent().map((c) => {
+            return {y: 0, o: 0}
+          })
+        }
+        styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {
+          return i === 0
+            // Initial stiffness and damping
+            ? {y: spring(1, {stiffness: 45, damping: 6}), o: spring(1)}
+            // Final stiffness and damping
+            : {
+              y: spring(prevInterpolatedStyles[i - 1].y, {stiffness: 65, damping: 10}),
+              o: spring(prevInterpolatedStyles[i - 1].o)
+            };
+        })}
+      >
+        {interpolatingStyles => {
+          return (
+            <MyGrid style={{"backgroundColor": styles.background}} container>
+              {interpolatingStyles.map((style, i) => content(style, i))}
+            </MyGrid>
+          );
         }}
-        </Motion>
+      </StaggeredMotion>
     )
   }
 }
