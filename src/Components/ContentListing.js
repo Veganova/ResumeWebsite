@@ -56,13 +56,13 @@ const startOpacity = 0.0;
 
 // Lower damping and stiffness here will exaggerate the
 // Start of the sequence of animations
-const initialStiffness = 10;// 10
-const initialDamping = 3.7;//3.6
+const initialStiffness = 100;// 10
+const initialDamping = 15;//3.6
 
 // Lower damping and stiffness here will exaggerate the
 // End of the sequence of animations
-const finalStiffness = 14 ;//400;
-const finalDamping = 3.7;//20;
+const finalStiffness = 700;//400;
+const finalDamping = 20;//20;
 
 class ContentListing extends Component {
 
@@ -73,10 +73,16 @@ class ContentListing extends Component {
       resumeContent: this.props.resumeContent
     }
 
+    this.first = true;
   }
 
   render() {
-
+    if (this.first && this.props.scale < 0.95) {
+      return <React.Fragment />
+    } else {
+      // Even if the scale value oscilates back, will not render nothing again.
+      this.first = false;
+    }
 
 
     return (
@@ -99,7 +105,7 @@ class ContentListing extends Component {
           <Dangle>
             {interpolatingStyles.map((style, i) => {
               const childStyles = {
-                height: 100 * style.y + '%',
+                "margin-top": (-1 * i * styles.contentHeight * (1 - style.y)) + 'px',
                 opacity: style.o
               };
               // const childStyles = {

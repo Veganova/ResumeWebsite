@@ -66,7 +66,7 @@ class RightArrow extends Component {
         {interpolatedStyles => {
           return (
             <div>
-              {this.rightArrow(interpolatedStyles.scale)}
+              {this.rightArrow(this.props.scale)}
             </div>);
         }}
       </Motion>
