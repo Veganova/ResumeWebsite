@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 import RightArrow from "./RightArrow";
+
+import Header from './Header';
 import styled from 'styled-components';
 import ContentListing from "./ContentListing";
 import styles from '../styles/styles';
 import {Motion, spring, StaggeredMotion} from "react-motion";
 
-const Name = styled.p`
-  font-size: ${props => props.size}pt;
-  font-weight: bold;
-  display: inline;
-`;
+
 
 const MyGrid = styled(Grid)`
   padding-bottom: 5px;
@@ -21,13 +19,13 @@ const Nested = styled.div`
     display: inline-block;
     vertical-align: top;
     text-decoration: underline;
-    width: 30%;
+    width: ${styles.infoMargin * 100}%;
     overflow-wrap: break-word;
   }
   
   .value {
     display: inline-block;
-    width: 70%;
+    width: ${(1- styles.infoMargin) * 100}%;
   }
 `
 
@@ -58,12 +56,7 @@ class Resume extends Component {
       }
 
       return (
-        [
-          <MyGrid item xs={12}>
-            <div><Name size={18}> Viraj Patil </Name> | Other stuff</div>
-          </MyGrid>,
-
-          <React.Fragment>
+        [<React.Fragment>
             <MyGrid item xs={6}>
               <div>
                 <RightArrow scale={styles.y} text={"Education"} height={this.props.height} width={this.props.width}/>
@@ -174,7 +167,7 @@ class Resume extends Component {
             <MyGrid item xs={6}/>
             <MyGrid item xs={12}>
               <ContentListing scale={styles.y} height={this.props.height} width={this.props.width} resumeContent={[
-                [<div><h4>Note-taking Web Application</h4><a href={"www.recollect.info"}>(www.recollect.info)</a></div>, "June ‘18"],
+                [<div><h4>Note-taking Web Application</h4><a href={"http://www.recollect.info"}>(www.recollect.info)</a></div>, "June ‘18"],
                 [<ul>
                   <li>Developed a notes application with calculated design decisions granting easy scalability</li>
                 </ul>, null],
@@ -184,7 +177,7 @@ class Resume extends Component {
                 [<ul>
                   <li>Handled back-end requests with Express and accessed a mLab database with Mongoose</li>
                 </ul>, null],
-                [<div><h4>Android Development</h4><a href={"www.github.com/veganova/Entity"}>(github.com/veganova/Entity)</a></div>, "July ‘17"],
+                [<div><h4>Android Development</h4><a href={"http://www.github.com/veganova/Entity"}>(github.com/veganova/Entity)</a></div>, "July ‘17"],
                 [<ul>
                   <li>Created an Android game with realistic physics, interesting mechanics and a unique UI</li>
                 </ul>, null],
@@ -210,38 +203,43 @@ class Resume extends Component {
           </React.Fragment>
         ]
       )
-    }
+    };
 
     let content = (styles, i) => {
       return getAllContent(styles)[i]
     };
 
     return (
-      <StaggeredMotion
-        defaultStyles={
-          getAllContent().map((c) => {
-            return {y: 0, o: 0}
-          })
-        }
-        styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {
-          return i === 0
-            // Initial stiffness and damping
-            ? {y: spring(1, {stiffness: 45, damping: 6}), o: spring(1)}
-            // Final stiffness and damping
-            : {
-              y: spring(prevInterpolatedStyles[i - 1].y, {stiffness: 65, damping: 10}),
-              o: spring(prevInterpolatedStyles[i - 1].o)
-            };
-        })}
-      >
-        {interpolatingStyles => {
-          return (
-            <MyGrid style={{"backgroundColor": styles.background}} container>
-              {interpolatingStyles.map((style, i) => content(style, i))}
-            </MyGrid>
-          );
-        }}
-      </StaggeredMotion>
+      <MyGrid style={{"backgroundColor": styles.background}} container>
+        <MyGrid item xs={12}>
+          <Header height={this.props.height} width={this.props.width}/>
+        </MyGrid>
+        {/*<StaggeredMotion*/}
+          {/*defaultStyles={*/}
+            {/*getAllContent().map((c) => {*/}
+              {/*return {y: 0, o: 0}*/}
+            {/*})*/}
+          {/*}*/}
+          {/*styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {*/}
+            {/*return i === 0*/}
+              {/*// Initial stiffness and damping*/}
+              {/*? {y: spring(1, {stiffness: 45, damping: 6}), o: spring(1)}*/}
+              {/*// Final stiffness and damping*/}
+              {/*: {*/}
+                {/*y: spring(prevInterpolatedStyles[i - 1].y, {stiffness: 65, damping: 10}),*/}
+                {/*o: spring(prevInterpolatedStyles[i - 1].o)*/}
+              {/*};*/}
+          {/*})}*/}
+        {/*>*/}
+          {/*{interpolatingStyles => {*/}
+            {/*return (*/}
+              {/*<React.Fragment>*/}
+                {/*{interpolatingStyles.map((style, i) => content(style, i))}*/}
+              {/*</React.Fragment>*/}
+            {/*);*/}
+          {/*}}*/}
+        {/*</StaggeredMotion>*/}
+      </MyGrid>
     )
   }
 }

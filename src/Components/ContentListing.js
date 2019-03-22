@@ -57,12 +57,12 @@ const startOpacity = 0.0;
 // Lower damping and stiffness here will exaggerate the
 // Start of the sequence of animations
 const initialStiffness = 100;// 10
-const initialDamping = 15;//3.6
+const initialDamping = 20;//3.6
 
 // Lower damping and stiffness here will exaggerate the
 // End of the sequence of animations
 const finalStiffness = 700;//400;
-const finalDamping = 20;//20;
+const finalDamping = 25;//20;
 
 class ContentListing extends Component {
 

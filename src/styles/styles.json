@@ -12,5 +12,7 @@
   "leftPadding": 0.05,
   "rightPadding": 0.10,
   "rightArrowPadding": 0.0,
-  "sectionSpacing": 20
+  "sectionSpacing": 10,
+  "infoMargin": 0.3,
+  "headerBar": 0.1
 }
