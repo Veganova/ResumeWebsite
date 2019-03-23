@@ -12,7 +12,8 @@ import {Motion, spring, StaggeredMotion} from "react-motion";
 
 const MyGrid = styled(Grid)`
   padding-bottom: 5px;
-  font-family: "gothic"
+  font-family: "gothic";
+  background-color: ${styles.background};
 `;
 const Nested = styled.div`
   .key {
@@ -47,6 +48,13 @@ const InnerNested = styled.div`
 
 
 class Resume extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      startRest: false
+    }
+  }
   getAllContent = (styles) => {
     if (!styles) {
       styles = {
@@ -210,35 +218,36 @@ class Resume extends Component {
     };
 
     return (
-      <MyGrid style={{"backgroundColor": styles.background}} container>
+      <MyGrid container>
         <MyGrid item xs={12}>
-          <Header height={this.props.height} width={this.props.width}/>
+          <Header height={this.props.height} width={this.props.width} startRest={() => this.setState({startRest: true})}/>
         </MyGrid>
-        {/*<StaggeredMotion*/}
-          {/*defaultStyles={*/}
-            {/*this.getAllContent().map((c) => {*/}
-              {/*return {y: 0, o: 0}*/}
-            {/*})*/}
-          {/*}*/}
-          {/*styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {*/}
-            {/*return i === 0*/}
-              {/*// Initial stiffness and damping*/}
-              {/*? {y: spring(1, {stiffness: 45, damping: 6}), o: spring(1)}*/}
-              {/*// Final stiffness and damping*/}
-              {/*: {*/}
-                {/*y: spring(prevInterpolatedStyles[i - 1].y, {stiffness: 65, damping: 10}),*/}
-                {/*o: spring(prevInterpolatedStyles[i - 1].o)*/}
-              {/*};*/}
-          {/*})}*/}
-        {/*>*/}
-          {/*{interpolatingStyles => {*/}
-            {/*return (*/}
-              {/*<React.Fragment>*/}
-                {/*{interpolatingStyles.map((style, i) => content(style, i))}*/}
-              {/*</React.Fragment>*/}
-            {/*);*/}
-          {/*}}*/}
-        {/*</StaggeredMotion>*/}
+        {this.state.startRest ?
+        <StaggeredMotion
+          defaultStyles={
+            this.getAllContent().map((c) => {
+              return {y: 0, o: 0}
+            })
+          }
+          styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {
+            return i === 0
+              // Initial stiffness and damping
+              ? {y: spring(1, {stiffness: 45, damping: 6}), o: spring(1)}
+              // Final stiffness and damping
+              : {
+                y: spring(prevInterpolatedStyles[i - 1].y, {stiffness: 65, damping: 10}),
+                o: spring(prevInterpolatedStyles[i - 1].o)
+              };
+          })}
+        >
+          {interpolatingStyles => {
+            return (
+              <React.Fragment>
+                {interpolatingStyles.map((style, i) => content(style, i))}
+              </React.Fragment>
+            );
+          }}
+        </StaggeredMotion> : <div/>}
       </MyGrid>
     )
   }
