@@ -51,7 +51,7 @@ const Content = styled.div`
 
 
 
-const startY = -0.1;
+const startY = 0;
 const startOpacity = 0.0;
 
 // Lower damping and stiffness here will exaggerate the

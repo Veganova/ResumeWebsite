@@ -27,9 +27,6 @@ const Info = styled.div`
   //position: relative;
   padding-left: 3%;
   overflow: hidden;
-  div {
-    display: inline-block;
-  }
 `;
 
 const Bar = styled.div`
@@ -105,14 +102,14 @@ class Header extends Component {
 
   render() {
     let H = styles.headerBar * this.props.height;
-    let P = H * 0.05;
+    let P = H * 0.11;
     let W = H * 0.0425;
     console.log("also here!")
     return (
 
       <Motion
         defaultStyle={{scale: 0}}
-        style={{scale: spring(1, {stiffness: this.state.popText ? 55 : 0, damping: 20})}}
+        style={{scale: spring(1, {stiffness: this.state.popText ? 35 : 0, damping: 16})}}
         onRest={() => this.props.startRest()}
       >
         {outerInterpolatedStyles => {
@@ -136,12 +133,23 @@ class Header extends Component {
                 </Motion>
               </Bar>
               <Info>
-                <div style={{"margin-left": (outerInterpolatedStyles.scale - 1) * 100 + "%"}}> abc</div>
+                <div style={{"margin-left": (outerInterpolatedStyles.scale - 1) * 200 + "%",
+                "padding-top": '0.09%'}}>{this.renderContactInfo()}</div>
               </Info>
             </HeaderContainer>
           )
         }}
       </Motion>
+    )
+  }
+
+  renderContactInfo() {
+    return (
+      <div>
+        <div>5 Sachem Street #3, Boston, MA, 02120 | (M) 781-266-8093</div>
+        <div><b>Available:</b>  January – June 2019</div>
+        <div>patil.vir@husky.neu.edu | github.com/veganova | linkedin.com/in/virajnpatil</div>
+      </div>
     )
   }
 }

@@ -57,20 +57,8 @@ class RightArrow extends Component {
   }
 
   render() {
-    return (
+    return this.rightArrow(this.props.scale)
 
-      <Motion
-        defaultStyle={{scale: 0.0}}
-        style={{scale: spring(1, {stiffness: 45, damping: 6})}}
-      >
-        {interpolatedStyles => {
-          return (
-            <div>
-              {this.rightArrow(this.props.scale)}
-            </div>);
-        }}
-      </Motion>
-    )
   }
 }
 

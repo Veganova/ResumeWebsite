@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import ContentListing from "./ContentListing";
 import styles from '../styles/styles';
 import {Motion, spring, StaggeredMotion} from "react-motion";
+import Footer from "./Footer";
 
 
 
@@ -204,7 +205,19 @@ class Resume extends Component {
               </ul>, null],
               [<ul>
                 <li>MIT Battlecode: Programmed an AI in Java to fight against other AIs in a competition</li>
-              </ul>, null],
+              </ul>, null]
+            ]}/>
+          </MyGrid>
+        </React.Fragment>,
+
+        <React.Fragment>
+          <MyGrid item xs={6}>
+            <RightArrow scale={styles.y} text={"Interests"} height={this.props.height} width={this.props.width}/>
+          </MyGrid>
+          <MyGrid item xs={6}/>
+          <MyGrid item xs={12}>
+            <ContentListing scale={styles.y} height={this.props.height} width={this.props.width} resumeContent={[
+              [<div>Graphical design, sailing, video games, Thai food, photography, spikeball, tennis</div>, null]
             ]}/>
           </MyGrid>
         </React.Fragment>
@@ -248,6 +261,9 @@ class Resume extends Component {
             );
           }}
         </StaggeredMotion> : <div/>}
+        <MyGrid item xs={12} style={{padding: 0}}>
+          <Footer height={this.props.height} width={this.props.width}/>
+        </MyGrid>
       </MyGrid>
     )
   }

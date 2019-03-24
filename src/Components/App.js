@@ -23,15 +23,6 @@ class App extends Component {
     </Grid>
     );
   }
-
-
-  render2() {
-    return (
-      <div>
-
-      </div>
-    );
-  }
 }
 
 export default App;
