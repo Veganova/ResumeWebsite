@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/veganova/ResumeWebsite/precache-manifest.cfa18f5b1013c88169d3bfb9a7a45099.js"
+  "/ResumeWebsite/precache-manifest.e969f5c86448f8cf693ec66240a5c6bd.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/veganova/ResumeWebsite/index.html", {
+workbox.routing.registerNavigationRoute("/ResumeWebsite/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
