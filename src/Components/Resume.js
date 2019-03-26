@@ -12,9 +12,7 @@ import Footer from "./Footer";
 
 
 const MyGrid = styled(Grid)`
-  padding-bottom: 5px;
   font-family: "gothic";
-  background-color: ${styles.background};
 `;
 const Nested = styled.div`
   .key {
@@ -175,7 +173,7 @@ class Resume extends Component {
           <MyGrid item xs={6}/>
           <MyGrid item xs={12}>
             <ContentListing scale={styles.y} height={this.props.height} width={this.props.width} resumeContent={[
-              [<div><h4>Note-taking Web Application</h4><a href={"http://www.recollect.info"}>(www.recollect.info)</a></div>, "June ‘18"],
+              [<div><h4>Note-taking Web Application</h4><a target="_blank" rel="noopener noreferrer" href={"http://www.recollect.info"}>(www.recollect.info)</a></div>, "June ‘18"],
               [<ul>
                 <li>Developed a notes application with calculated design decisions granting easy scalability</li>
               </ul>, null],
@@ -185,7 +183,7 @@ class Resume extends Component {
               [<ul>
                 <li>Handled back-end requests with Express and accessed a mLab database with Mongoose</li>
               </ul>, null],
-              [<div><h4>Android Development</h4><a href={"http://www.github.com/veganova/Entity"}>(github.com/veganova/Entity)</a></div>, "July ‘17"],
+              [<div><h4>Android Development</h4><a target="_blank" rel="noopener noreferrer" href={"https://www.github.com/veganova/Entity"}>(github.com/veganova/Entity)</a></div>, "July ‘17"],
               [<ul>
                 <li>Created an Android game with realistic physics, interesting mechanics and a unique UI</li>
               </ul>, null],
@@ -231,10 +229,11 @@ class Resume extends Component {
     };
 
     return (
-      <MyGrid container>
+      <MyGrid container style={{background: styles.background}}>
         <MyGrid item xs={12}>
           <Header height={this.props.height} width={this.props.width} startRest={() => this.setState({startRest: true})}/>
         </MyGrid>
+        <div style={{position: "relative", "min-height": this.props.height + "px"}}>
         {this.state.startRest ?
         <StaggeredMotion
           defaultStyles={
@@ -261,9 +260,13 @@ class Resume extends Component {
             );
           }}
         </StaggeredMotion> : <div/>}
-        <MyGrid item xs={12} style={{padding: 0}}>
-          <Footer height={this.props.height} width={this.props.width}/>
-        </MyGrid>
+
+        <div style={{
+          position: "absolute",
+          right: 0,
+          bottom: 0
+        }}><Footer height={this.props.height} width={this.props.width}/></div>
+        </div>
       </MyGrid>
     )
   }

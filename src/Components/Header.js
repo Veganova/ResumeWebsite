@@ -11,7 +11,7 @@ const Name = styled.div`
   text-align: center;
   margin-left: 2%;
   flex-grow: 100;
-  font-size: ${props => -1 + 0.03 * props.width}pt;
+  font-size: ${props => 9 + 0.02 * props.width}pt;
   div {
     display: inline-block;
     width: 100%;
@@ -19,14 +19,16 @@ const Name = styled.div`
 `;
 
 const Info = styled.div`
-  font-size: 12pt;
+  word-break: break-all;
+  white-space: normal;
   display: inline-block;
   text-align: left;
-   width: ${100 * (1 - styles.infoMargin)}%;
+  width: ${100 * (1 - styles.infoMargin)}%;
   //flex: 7;
   //position: relative;
   padding-left: 3%;
   overflow: hidden;
+  font-size: ${props => 7 + 0.005 * props.width}pt;
 `;
 
 const Bar = styled.div`
@@ -37,13 +39,11 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   height: ${props => props.height}px;
-  border: 1px solid red;
   align-items: center;
       
   path {
     fill: ${styles.Left};
   }
-
 `
 
 
@@ -132,7 +132,7 @@ class Header extends Component {
                   {interpolatedStyles => this.renderBar(interpolatedStyles.scale, H, W, P)}
                 </Motion>
               </Bar>
-              <Info>
+              <Info width={this.props.width}>
                 <div style={{"margin-left": (outerInterpolatedStyles.scale - 1) * 200 + "%",
                 "padding-top": '0.09%'}}>{this.renderContactInfo()}</div>
               </Info>
@@ -146,9 +146,13 @@ class Header extends Component {
   renderContactInfo() {
     return (
       <div>
-        <div>5 Sachem Street #3, Boston, MA, 02120 | (M) 781-266-8093</div>
+        <div>5 Sachem Street #3, Boston, MA, 02120 | (M) <a href="tel:+17812668093">781-266-8093</a></div>
         <div><b>Available:</b>  January – June 2019</div>
-        <div>patil.vir@husky.neu.edu | github.com/veganova | linkedin.com/in/virajnpatil</div>
+        <div>
+          <a href="mailto:patil.vir@husky.neu.edu">patil.vir@husky.neu.edu</a> |
+          <a href="https://www.github.com/veganova" target="_blank" rel="noopener noreferer">github.com/veganova</a> |
+          <a href="https://www.linkedin.com/in/virajnpatil" target="_blank" rel="noopener noreferer">linkedin.com/in/virajnpatil</a>
+        </div>
       </div>
     )
   }
