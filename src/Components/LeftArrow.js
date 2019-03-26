@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import {render} from 'react-dom';
 import {Motion, spring} from "react-motion";
-import {Stage, Layer, Shape, Text} from 'react-konva';
 import styled from 'styled-components';
 import styles from '../styles/styles';
 

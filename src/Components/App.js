@@ -5,6 +5,7 @@ import '../styles/resume.css';
 import Resume from './Resume';
 import ContainerDimensions from 'react-container-dimensions'
 import styles from '../styles/styles'
+import Helmet from 'react-helmet'
 
 class App extends Component {
 
@@ -13,6 +14,10 @@ class App extends Component {
     const LG_WIDTH = 6;
     return (
     <Grid container spacing={0} className="fullHeight">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Viraj Patil</title>
+      </Helmet>
       <Grid item md={(12 - MD_WIDTH) / 2.0} lg={(12 - LG_WIDTH) / 2.0}/>
       <Grid item xs={12} md={MD_WIDTH} lg={LG_WIDTH} className='resume-container'  style={{"backgroundColor": styles.background}}>
         <ContainerDimensions>
