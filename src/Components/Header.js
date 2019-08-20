@@ -147,7 +147,7 @@ class Header extends Component {
     return (
       <div>
         <div>5 Sachem Street #3, Boston, MA, 02120 | (M) <a href="tel:+17812668093">781-266-8093</a></div>
-        <div><b>Available:</b>  January – June 2019</div>
+        <div><b>Available:</b>  January – August 2020 Co-op / August 2020 Full-time</div>
         <div>
           <a href="mailto:patil.vir@husky.neu.edu">patil.vir@husky.neu.edu</a> |
           <a href="https://www.github.com/veganova" target="_blank" rel="noopener noreferer">github.com/veganova</a> |
