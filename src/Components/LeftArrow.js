@@ -22,7 +22,7 @@ const ArrowText = styled.div`
   line-height: ${styles.contentHeight}px;;
   padding-left : 12.5%;
   color: ${styles.textRight};
-  font-size: ${props => 0.3 + 0.07 * props.width}pt;
+  font-size: ${props => 0.3 + 0.062 * props.width}pt;
   font-weight: 600;
 `;
 

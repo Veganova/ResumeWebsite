@@ -108,7 +108,7 @@ class Resume extends Component {
                 <div className="value">
                   <InnerNested>
                     <div className="innerKey">Native</div>
-                    <div className="innerValue">Java, JavaScript(ES6), HTML5, CSS3, React-Redux</div>
+                    <div className="innerValue">Java, React-Redux, JavaScript(ES6), HTML5, CSS3</div>
                   </InnerNested>
                   <InnerNested>
                     <div className="innerKey">Frequenter</div>
@@ -130,7 +130,7 @@ class Resume extends Component {
               </Nested>],
               [<Nested>
                 <div className="key">Other</div>
-                <div className="value">TDD w/ JUnit, Selenium, Bootstrap</div>
+                <div className="value">AWS Lambda & S3, TDD w/ JUnit & Jest, Selenium, Bootstrap</div>
               </Nested>]
             ]}/>
           </MyGrid>
@@ -143,6 +143,19 @@ class Resume extends Component {
           <MyGrid item xs={6}/>
           <MyGrid item xs={12}>
             <ContentListing scale={styles.y} height={this.props.height} width={this.props.width} resumeContent={[
+              [<h4>Intuit – Mountain View, CA | Software Developer Co-op</h4>, "Jan. ‘19 – Aug. ‘19"],
+              [<ul>
+                <li>Created custom components which reached 200,000+ QBO customers daily</li>
+              </ul>, null],
+              [<ul>
+                <li>
+                  Developed an audit dashboard for the QB Marketing team by consolidating data
+                  from 7 sources. Created a serverless AWS backend and an aesthetic UI using React
+                </li>
+              </ul>, null],
+              [<ul>
+                <li>Provided insights to management to pinpoint critical changes. Presented to Intuit’s CTO.</li>
+              </ul>, null],
               [<h4>SmarterTravel - A TripAdvisor company, Boston, MA | Software Developer Co-op</h4>, "Jan. ‘18 – June ‘18"],
               [<ul>
                 <li>Implemented new functionality and fixed bugs across the full-stack for SmarterTravel's
@@ -215,7 +228,7 @@ class Resume extends Component {
           <MyGrid item xs={6}/>
           <MyGrid item xs={12}>
             <ContentListing scale={styles.y} height={this.props.height} width={this.props.width} resumeContent={[
-              [<div>Graphical design, sailing, video games, Thai food, photography, spikeball, tennis</div>, null]
+              [<div>Graphical design, sailing, video games, hiking, Thai food, photography, spikeball, tennis</div>, null]
             ]}/>
           </MyGrid>
         </React.Fragment>
